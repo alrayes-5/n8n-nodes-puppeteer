@@ -1,0 +1,13 @@
+$ docker run \
+  --rm \
+  -p 3000:3000 \
+  -e "CONCURRENT=10" \
+  -e "TOKEN=6R0W53R135510" \
+  ghcr.io/browserless/chromium
+FROM ghcr.io/browserless/chromium:latest
+# Set the working directory
+WORKDIR /app    
+# Copy the package.json and package-lock.json files
+COPY package.json package-lock.json ./      
+# Install the dependencies
+RUN npm install --production
